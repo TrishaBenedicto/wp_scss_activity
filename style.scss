@@ -1,0 +1,1243 @@
+//colors
+    $white-color:                  #ffffff;
+    $primary-color:                #BC6C25;
+    $secondary-color:              #DDA15E;
+    $section-bg-color:             #b78752;
+    $custom-btn-bg-color:          #BC6C25;
+    $custom-btn-bg-hover-color:    #DDA15E;
+    $dark-color:                   #000000;
+    $p-color:                      #717275;
+    $border-color:                 #7fffd4;
+    $link-hover-color:             #E76F51;
+
+    // Font Family
+    $body-font-family:             'Plus Jakarta Sans', sans-serif;
+
+    // Font sizes for headings, paragraphs, buttons, and menus
+    $h1-font-size:                 68px;
+    $h2-font-size:                 46px;
+    $h3-font-size:                 32px;
+    $h4-font-size:                 28px;
+    $h5-font-size:                 24px;
+    $h6-font-size:                 22px;
+    $p-font-size:                  20px;
+    $btn-font-size:                16px;
+    $form-btn-font-size:           18px;
+    $menu-font-size:               16px;
+
+    // Border radius 
+    $border-radius-large:          100px;
+    $border-radius-medium:         20px;
+    $border-radius-small:          10px;
+
+    // Font weight
+    $font-weight-thin:             200;
+    $font-weight-light:            300;
+    $font-weight-normal:           400;
+    $font-weight-medium:             500;
+    $font-weight-bold:             700;
+  
+    // Mixin for applying consistent text styles
+    @mixin text-style($color, $font-size, $font-weight) {
+        color: $color;
+        font-size: $font-size;
+        font-weight: $font-weight;
+      }
+      
+      // Base Styles
+      body {
+        background-color: $white-color;
+        font-family: $body-font-family;
+      }
+      
+      // Typography
+      h1, h2, h3, h4, h5, h6 {
+        @include text-style($dark-color, null, $font-weight-bold);
+      }
+      
+      h1 { @include text-style(null, $h1-font-size, null); }
+      h2 { @include text-style(null, $h2-font-size, null); }
+      h3 { @include text-style(null, $h3-font-size, null); }
+      h4 { @include text-style(null, $h4-font-size, null); }
+      h5 { @include text-style(null, $h5-font-size, null); }
+      h6 { @include text-style(null, $h6-font-size, null); }
+      
+      p {
+        @include text-style($p-color, $p-font-size, $font-weight-light);
+      }
+      
+      ul li {
+        @include text-style($p-color, $p-font-size, $font-weight-light);
+      }
+      
+      // Links and Buttons
+      a, button {
+        touch-action: manipulation;
+        transition: all 0.3s;
+      }
+      
+      a {
+        display: inline-block;
+        color: $primary-color;
+        text-decoration: none;
+      
+        &:hover {
+          color: $link-hover-color;
+        }
+      }
+      
+      b, strong {
+        font-weight: $font-weight-bold;
+      }
+  
+  
+/*---------------------------------------
+    SECTION                
+  -----------------------------------------*/
+
+.section-padding {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.section-bg {
+  background-color: $section-bg-color;
+}
+
+.section-overlay {
+  background-color: $dark-color;
+  position: absolute;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  opacity: 0.65;
+
+  // Ensure .container within .section-overlay is positioned correctly
+  .container {
+    position: relative;
+    z-index: 22;
+  }
+}
+
+.back-top-icon {
+  font-size: $h2-font-size;
+}
+
+  
+  /*---------------------------------------
+      TIMELINE               
+    -----------------------------------------*/
+  
+  .timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+  
+    // Adding vertical line in the timeline
+    &::after {
+      content: '';
+      position: absolute;
+      width: 5px;
+      background-color: $white-color;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+    }
+  
+    .timeline-container {
+      padding: 10px 40px;
+      padding-top: 0;
+      position: relative;
+      background-color: inherit;
+      width: 50%;
+  
+      // Adding circle at the end of timeline items
+      &::after {
+        content: '';
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        right: -12px;
+        background-color: $white-color;
+        border: 5px solid #7c5c52;
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+      }
+  
+      // Positioning left side of timeline container
+      &.timeline-container-left {
+        left: 0;
+  
+        &::before {
+          content: " ";
+          height: 0;
+          position: absolute;
+          top: 9px;
+          width: 0;
+          z-index: 1;
+          right: 25px;
+          border: medium solid white;
+          border-width: 20px 0 20px 20px;
+          border-color: transparent transparent transparent white;
+        }
+      }
+  
+      // Positioning right side of timeline container
+      &.timeline-container-right {
+        left: 50%;
+  
+        &::before {
+          content: " ";
+          height: 0;
+          position: absolute;
+          top: 9px;
+          width: 0;
+          z-index: 1;
+          left: 25px;
+          border: medium solid white;
+          border-width: 20px 20px 20px 0;
+          border-color: transparent white transparent transparent;
+        }
+  
+        // Adjusting position of right side timeline container circle
+        &::after {
+          left: -13px;
+        }
+      }
+  
+      .timeline-content {
+        padding: 5px;
+        background-color: $white-color;
+        position: relative;
+        border-radius: $border-radius-medium;
+      }
+    }
+  }
+  
+  
+  @media screen and (max-width: 991px) {
+    .timeline::after {
+      left: 31px;
+    }
+  
+    .timeline-container {
+      width: 100%;
+      padding-left: 70px;
+      padding-right: 25px;
+    }
+  
+    .timeline-container::before {
+      left: 58px;
+      border: medium solid white;
+      border-width: 20px 20px 20px 0;
+      border-color: transparent white transparent transparent;
+    }
+  
+    .timeline-container-left::after, .timeline-container-right::after {
+      left: 6px;
+    }
+  
+    .timeline-container-right {
+      left: 0%;
+    }
+  }
+  
+  
+  /*---------------------------------------
+    CUSTOM BUTTON               
+  -----------------------------------------*/
+  .custom-btn {
+    background: $custom-btn-bg-color;
+    border: 2px solid transparent;
+    border-radius: $border-radius-large;
+    color: $white-color;
+    font-size: $btn-font-size;
+    font-weight: $font-weight-bold;
+    line-height: normal;
+    transition: all 0.3s;
+    padding: 12px 28px;
+  }
+  
+  .custom-btn:hover {
+    background: $custom-btn-bg-hover-color;
+    color: $white-color;
+  }
+  
+  .custom-border-btn {
+    background: transparent;
+    border: 2px solid $white-color;
+    color: $white-color;
+  }
+  
+  .custom-border-btn:hover {
+    background: $white-color;
+    color: $secondary-color;
+  }
+  
+  .custom-btn-bg-white {
+    border-color: $white-color;
+    color: $white-color;
+  }
+  
+  .custom-btn-italic {
+    font-style: italic;
+  }
+  
+  
+  /*---------------------------------------
+    NAVIGATION BAR & OFFCANVAS              
+  -----------------------------------------*/
+  .sticky-wrapper {
+    position: absolute;
+    z-index: 999999;
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+  
+  .sticky-wrapper.is-sticky .container {
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: $border-radius-medium;
+    padding: 15px 30px;
+  }
+  
+  .navbar {
+    background: transparent;
+    z-index: 999999;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  
+  .navbar .container {
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: $border-radius-medium;
+    padding: 15px 30px;
+  }
+  
+  .navbar-brand,
+  .navbar-brand:hover {
+    font-size: $h4-font-size;
+    font-weight: $font-weight-bold;
+    display: block;
+    color: $white-color;
+  }
+  
+  .navbar .navbar-brand-image {
+    filter: brightness(0) invert(1);
+  }
+  
+  .navbar-brand-image {
+    width: 48px;
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  .navbar .custom-btn {
+    padding: 10px 20px;
+  }
+  
+  .navbar-expand-lg .navbar-nav .nav-link {
+    border-radius: $border-radius-large;
+    margin: 10px;
+    padding: 10px;
+  }
+  
+  .navbar-nav .nav-link {
+    display: inline-block;
+    color: $white-color;
+    font-size: $menu-font-size;
+    font-weight: $font-weight-bold;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  
+  .navbar-nav .nav-link.active, 
+  .navbar-nav .nav-link:hover {
+    color: $secondary-color;
+  }
+  
+  .navbar .dropdown-menu {
+    background: $white-color;
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
+    border: 0;
+    display: inherit;
+    opacity: 0;
+    min-width: 9rem;
+    margin-top: 20px;
+    padding: 13px 0 10px 0;
+    transition: all 0.3s;
+    pointer-events: none;
+  }
+  
+  .navbar .dropdown-menu::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 15px solid $white-color;
+    position: absolute;
+    top: -10px;
+    left: 10px;
+  }
+  
+  .navbar .dropdown-item {
+    display: inline-block;
+    color: $p-color;
+    font-size: $menu-font-size;
+    font-weight: $font-weight-medium;
+    position: relative;
+  }
+  
+  .navbar .dropdown-item.active, 
+  .navbar .dropdown-item:active,
+  .navbar .dropdown-item:focus, 
+  .navbar .dropdown-item:hover {
+    background: transparent;
+    color: $link-hover-color;
+  }
+  
+  .navbar .dropdown-toggle::after {
+    content: "\f282";
+    display: inline-block;
+    font-family: bootstrap-icons !important;
+    font-size: $menu-font-size;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    vertical-align: -.125em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    left: 2px;
+    border: 0;
+  }
+  
+  @media screen and (min-width: 992px) {
+    .navbar .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      margin-top: 0;
+      pointer-events: auto;
+    }
+  }
+
+  .navbar-toggler {
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    margin: 0;
+    width: 30px;
+    height: 35px;
+    outline: none;
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    &[aria-expanded="true"] {
+      .navbar-toggler-icon {
+        background: transparent;
+
+        &::before {
+          transform: rotate(45deg);
+        }
+
+        &::after {
+          transform: rotate(-45deg);
+        }
+      }
+
+      .navbar-toggler-icon {
+        background: $white-color;
+        transition: background 10ms 300ms ease;
+        display: block;
+        width: 30px;
+        height: 2px;
+        position: relative;
+
+        &::before,
+        &::after {
+          transition: top 300ms 350ms ease, transform 300ms 50ms ease;
+          position: absolute;
+          right: 0;
+          left: 0;
+          background: $white-color;
+          width: 30px;
+          height: 2px;
+          content: '';
+        }
+
+        &::before {
+          top: -8px;
+        }
+
+        &::after {
+          top: 8px;
+        }
+      }
+    }
+  }
+
+  
+  
+   /*---------------------------------------
+    HERO      
+  -----------------------------------------*/
+  .hero-section {
+    background-color: $dark-color;
+    position: relative;
+    overflow: hidden;
+    min-height: 620px;
+    text-align: center;
+  
+    // Overlay effect on the hero section
+    &::after {
+      background-color: rgba(0, 0, 0, 0.65);
+      border-radius: $border-radius-medium;
+      content: "";
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-55%, -50%) rotate(45deg);
+      width: 250px;
+      height: 350px;
+      pointer-events: none;
+    }
+  
+    @media screen and (min-width: 991px) {
+      // Full height on larger screens
+      height: 100vh;
+    }
+  
+    // Main heading styling in hero section
+    h1 {
+      color: $white-color;
+    }
+  
+    // Small text styling
+    .small-text {
+      color: $secondary-color;
+    }
+  
+    // Custom border button styling in hero section
+    .custom-border-btn {
+      border-color: transparent;
+    }
+  
+    // Container positioning within hero section
+    .container {
+      position: relative;
+      z-index: 9;
+    }
+  
+    // Slides in hero section
+    .hero-slides {
+      width: 100%;
+      height: 100%;
+      position: absolute !important;
+    }
+  
+    // Opening hours list styling
+    .opening-hours-list {
+      margin: 0;
+      padding: 0;
+  
+      li {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: $btn-font-size;
+        font-weight: $font-weight-normal;
+        margin-bottom: 10px;
+  
+        .underline {
+          background-color: rgba(255, 255, 255, 0.75);
+          width: 35%;
+          height: 1px;
+          margin: auto 15px 0 15px;
+        }
+      }
+    }
+  }
+  
+  /*---------------------------------------
+      ABOUT               
+  -----------------------------------------*/
+  .about-section {
+    background-color: $secondary-color;
+    position: relative;
+  
+    // Ratio aspect styling
+    .ratio {
+      border-radius: $border-radius-medium;
+    }
+  
+    // Custom video styling
+    .custom-video {
+      border-radius: $border-radius-medium;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  
+    // Wrapper for about image with overflow hidden
+    .about-image-wrap {
+      border-radius: $border-radius-medium;
+      position: relative;
+      overflow: hidden;
+    }
+  
+    // Info section over video with gradient background
+    .about-video-info {
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(188, 108, 37, 1));
+      border-radius: $border-radius-medium;
+      bottom: 0;
+      height: auto;
+      padding: 40px;
+  
+      h4 {
+        color: $white-color;
+      }
+    }
+  
+    // Heading styling in about section
+    h6 {
+      color: $secondary-color;
+    }
+  
+    // Team block styling with hover effect
+    .team-block-wrap {
+      background-color: $secondary-color;
+      border-radius: $border-radius-medium;
+      position: relative;
+      overflow: hidden;
+      max-height: 450px;
+      cursor: pointer;
+  
+      &:hover .team-block-image {
+        transform: scale(1.2);
+      }
+    }
+  
+    // Image wrapper in team block
+    .team-block-image-wrap {
+      width: 100%;
+  
+      // Image styling in team block
+      .team-block-image {
+        display: block;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        transition: all 0.3s;
+      }
+    }
+  
+    // Info section in team block with gradient background
+    .team-block-info {
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(188, 108, 37, 1));
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 30px;
+  
+      .badge {
+        margin: auto;
+        top: 2px;
+        bottom: 0;
+      }
+    }
+  }
+  
+  /*---------------------------------------
+      OUR MENU               
+  -----------------------------------------*/
+  .menu-section {
+    background-image: url('images/happy-waitress-giving-coffee-customers-while-serving-them-coffee-shop.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+    // Menu block wrapper styling
+    .menu-block-wrap {
+      background: rgba(0, 0, 0, 0.65);
+      border-radius: $border-radius-medium;
+      padding: 45px;
+    }
+  
+    // Border top styling in menu block
+    .menu-block .border-top {
+      border-top-color: rgba(255, 255, 255, 0.35) !important;
+    }
+  
+    // Heading styling in menu block
+    .menu-block h6 {
+      color: $white-color;
+    }
+  
+    // Small text styling in menu block
+    .menu-block small {
+      color: rgba(255, 255, 255, 0.35);
+    }
+  
+    // Strong text styling in menu block
+    .menu-block strong {
+      color: $secondary-color;
+    }
+  
+    // Image styling in menu block
+    .menu-block-image {
+      border-radius: 100%;
+      width: 350px;
+      height: 350px;
+      object-fit: cover;
+      display: block;
+      margin: auto;
+      cursor: pointer;
+    }
+  
+    // Badge styling
+    .badge {
+      background-color: $primary-color;
+      font-size: 12px;
+      position: relative;
+      bottom: 4px;
+      padding-bottom: 6px;
+  
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -5px;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-right: 10px solid $primary-color;
+      }
+    }
+  }
+  
+  /*---------------------------------------
+      REVIEWS               
+  -----------------------------------------*/
+  .reviews-section {
+    background-color: #7c5c52;
+  }
+  
+  // Reviews block styling
+  .reviews-block {
+    background-color: $section-bg-color;
+    border-radius: $border-radius-medium;
+    position: relative;
+    overflow: hidden;
+  
+    // Border top styling in reviews block
+    .border-top {
+      border-top-color: rgba(255, 255, 255, 0.35) !important;
+    }
+  
+    // Image wrapper in reviews block with background image
+    .reviews-block-image-wrap {
+      background-image: url('../images/mid-section-waitress-wiping-espresso-machine-with-napkin-cafa-c.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      padding: 30px;
+  
+      // Image styling in reviews block
+      .reviews-block-image {
+        border-radius: $border-radius-large;
+        width: 65px;
+        height: 65px;
+        object-fit: cover;
+        margin-right: 10px;
+      }
+    }
+  
+    // Info section in reviews block
+    .reviews-block-info {
+      padding: 20px 30px;
+  
+      // Paragraph styling in reviews info
+      p {
+        font-size: $btn-font-size;
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.75);
+      }
+    }
+  
+    // Star icons group styling in reviews
+    .reviews-group {
+      i {
+        color: $white-color;
+      }
+    }
+  }
+  
+  
+  /*---------------------------------------
+    BOOKING SECTION               
+-----------------------------------------*/
+.booking-section {
+    background-image: url('../images/young-female-barista-wear-face-mask-serving-take-away-hot-coffee-paper-cup-consumer-cafe.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+  
+    // Wrapper for the booking form
+    .booking-form-wrap {
+      background-color: rgba(0, 0, 0, 0.65);
+      border-radius: $border-radius-medium;
+      position: relative;
+      overflow: hidden;
+      margin-top: 100px;
+  
+      // Booking form styling
+      .booking-form {
+        padding: 55px 65px;
+      }
+  
+      // Image wrapper inside booking form
+      .booking-form-image-wrap {
+        position: relative;
+        height: 100%;
+  
+        // Image styling
+        .booking-form-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+  
+      // Text inside booking form
+      .booking-form-text {
+        span {
+          color: $white-color;
+          font-size: $btn-font-size;
+        }
+      }
+    }
+  
+    // Reservation page button styling
+    .reservation-page {
+      .custom-border-btn {
+        border-color: $secondary-color;
+        color: $secondary-color;
+  
+        &:hover {
+          border-color: transparent;
+        }
+      }
+    }
+  }
+  
+  /*---------------------------------------
+      CONTACT               
+  -----------------------------------------*/
+  .contact-section {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), rgba(188, 108, 37, 1)), url('../images/young-female-barista-wear-face-mask-serving-take-away-hot-coffee-paper-cup-consumer-cafe.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  
+    // Google map styling
+    .google-map {
+      border-radius: $border-radius-medium;
+      filter: grayscale(100);
+    }
+  
+    // Wrapper for contact block
+    .contact-block-wrap {
+      background: $primary-color;
+      border-radius: $border-radius-medium;
+      padding: 0;
+      min-height: 200px;
+  
+      // Individual contact block styling
+      .contact-block {
+        background: $secondary-color;
+        border-radius: $border-radius-medium;
+        transform: rotate(8deg);
+        height: 100%;
+        padding: 20px 40px;
+  
+        // Heading inside contact block
+        h6 {
+          transform: rotate(-8deg);
+        }
+  
+        // Custom icon inside contact block
+        .custom-icon {
+          background: $primary-color;
+          border-radius: $border-radius-large;
+          display: block;
+          width: 50px;
+          height: 50px;
+          line-height: 50px;
+          text-align: center;
+          position: relative;
+        }
+  
+        // Strong text inside contact block
+        strong {
+          display: block;
+          color: $white-color;
+          text-transform: uppercase;
+          margin-top: 20px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+  
+  /*---------------------------------------
+      CUSTOM FORM               
+  -----------------------------------------*/
+  .custom-form {
+    .form-control {
+      color: $p-color;
+      border-radius: $border-radius-small;
+      margin-bottom: 30px;
+      padding-top: 13px;
+      padding-bottom: 13px;
+      box-shadow: none;
+      outline: none;
+      transition: all 0.3s;
+  
+      // Hover and focus states
+      &:hover,
+      &:focus {
+        background: $primary-color;
+        border-color: transparent;
+      }
+  
+      // Placeholder styling
+      &::-webkit-input-placeholder,
+      &::-moz-placeholder {
+        color: $white-color;
+      }
+    }
+  
+    // Label styling
+    .form-label {
+      color: $white-color;
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+  
+    // Submit button styling
+    button[type="submit"] {
+      background: $custom-btn-bg-color;
+      border: none;
+      border-radius: $border-radius-large;
+      color: $white-color;
+      font-size: $form-btn-font-size;
+      font-weight: $font-weight-bold;
+      transition: all 0.3s;
+      margin-bottom: 0;
+  
+      // Hover and focus states
+      &:hover,
+      &:focus {
+        background: $white-color;
+        border-color: transparent;
+        color: $primary-color;
+      }
+    }
+    
+    // Specific form controls for booking and contact forms
+    .contact-form .form-control,
+    .booking-form .form-control {
+      background-color: transparent;
+      border-color: rgba(255, 255, 255, 0.25);
+  
+      &::-webkit-input-placeholder,
+      &:-moz-placeholder {
+        color: $white-color;
+      }
+    }
+  
+    .booking-form .form-control {
+      color: $white-color;
+    }
+  }
+  
+  
+  /*---------------------------------------
+  SITE FOOTER               
+-----------------------------------------*/
+.site-footer {
+    background-color: $primary-color;
+    padding-top: 100px;
+    padding-bottom: 100px;
+  
+    // Strong text within site footer
+    strong {
+      color: $white-color;
+    }
+  
+    // Paragraphs and footer links styling
+    p,
+    .site-footer-link {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: $btn-font-size;
+    }
+  
+    .site-footer-link {
+      transition: all 0.3s;
+  
+      // Hover effect for footer links
+      &:hover {
+        color: rgba(255, 255, 255, 0.75); // redundant, but maintains consistency
+        text-decoration: underline;
+      }
+    }
+  
+    // Copyright text styling
+    .copyright-text {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: $menu-font-size;
+  
+      // Link within copyright text
+      a {
+        color: rgba(255, 200, 160, 0.75);
+      }
+    }
+  }
+  
+  /*---------------------------------------
+    SOCIAL ICON               
+  -----------------------------------------*/
+  .social-icon {
+    margin: 0;
+    padding: 0;
+  
+    // List items for social icons
+    .social-icon-item {
+      list-style: none;
+      display: inline-block;
+      vertical-align: top;
+    }
+  
+    // Social icon links styling
+    .social-icon-link {
+      background: $primary-color;
+      border-radius: $border-radius-large;
+      color: $white-color;
+      font-size: $menu-font-size;
+      display: block;
+      margin: 0 5px;
+      text-align: center;
+      width: 35px;
+      height: 35px;
+      line-height: 35px;
+      transition: background 0.2s, color 0.2s;
+  
+      // Hover effect for social icon links
+      &:hover {
+        background: $white-color;
+        color: $primary-color;
+      }
+  
+      // Span inside social icon links
+      span {
+        display: block;
+      }
+    }
+  }
+  
+  /*---------------------------------------
+    RESPONSIVE STYLES               
+  -----------------------------------------*/
+  @media screen and (max-width: 1200px) {
+    // Font size adjustments for large screens
+    h1 {
+      font-size: 62px;
+    }
+  }
+  
+  @media screen and (max-width: 991px) {
+    // Font size adjustments for medium screens
+    h1 {
+      font-size: 54px;
+    }
+  
+    h2 {
+      font-size: 36px;
+    }
+  
+    h3 {
+      font-size: 32px;
+    }
+  
+    h4 {
+      font-size: 28px;
+    }
+  
+    h5 {
+      font-size: 20px;
+    }
+  
+    h6 {
+      font-size: 18px;
+    }
+  
+    // Padding adjustments for sections
+    .section-padding {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+  
+    // Hero section padding adjustments
+    .hero-section {
+      padding-top: 148px;
+      padding-bottom: 100px;
+    }
+  
+    // Navbar styling adjustments
+    .navbar-expand-lg {
+      .navbar-nav {
+        padding-bottom: 20px;
+  
+        .nav-link {
+          padding: 0;
+          margin-bottom: 0;
+        }
+      }
+    }
+  
+    // Custom button margin adjustments in navbar
+    .navbar {
+      .custom-btn {
+        margin-bottom: 10px;
+      }
+    }
+  
+    // Booking form padding adjustments
+    .booking-form {
+      padding: 45px;
+    }
+  
+    // Contact section container adjustments
+    .contact-section {
+      .container {
+        width: auto;
+        margin-right: 10px;
+        margin-left: 10px;
+        padding: 35px;
+      }
+    }
+  
+    // Site footer padding adjustments
+    .site-footer {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+  }
+  
+  @media screen and (max-width: 767px) {
+    // Custom button font size and padding adjustments
+    .custom-btn {
+      font-size: 14px;
+      padding: 12px 20px;
+    }
+  
+    // Padding adjustments for various blocks
+    .menu-block-wrap,
+    .reviews-block-image-wrap,
+    .reviews-block-info {
+      padding: 20px;
+    }
+  }
+  
+  @media screen and (max-width: 578px) {
+    // Navbar container margin adjustments
+    .navbar {
+      .container,
+      .sticky-wrapper.is-sticky .container {
+        margin-right: 10px;
+        margin-left: 10px;
+      }
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    // Font size adjustments for very small screens
+    h1 {
+      font-size: 38px;
+    }
+  
+    h2 {
+      font-size: 28px;
+    }
+  
+    h3 {
+      font-size: 26px;
+    }
+  
+    h4 {
+      font-size: 22px;
+    }
+  
+    h5 {
+      font-size: 20px;
+    }
+  
+    // Hero section after pseudo-element adjustments
+    .hero-section::after {
+      width: 200px;
+      height: 200px;
+    }
+  
+    // Booking form padding adjustments for small screens
+    .booking-form {
+      padding: 35px;
+    }
+  
+    // Font size adjustments for opening hours list items
+    .opening-hours-list {
+      li {
+        font-size: 12px;
+      }
+    }
+  
+    // Flex direction adjustments for reviews block image wrap
+    .reviews-block-image-wrap {
+      flex-direction: column;
+  
+      // Margin adjustments for reviews block image
+      .reviews-block-image {
+        margin-bottom: 15px;
+      }
+    }
+  
+    // Timeline container adjustments
+    .timeline-container {
+      padding-left: 55px;
+  
+      // Before pseudo-element styling
+      &::before {
+        left: 44px;
+        border: medium solid white;
+        border-width: 15px 15px 15px 0;
+        border-color: transparent white transparent transparent;
+      }
+  
+      // Before pseudo-element styling for left and right containers
+      .timeline-container-left::before,
+      .timeline-container-right::before {
+        top: 13px;
+      }
+    }
+  }
+  
